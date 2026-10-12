@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aim ESP Demo</title>
+<style>
+body {
+  margin: 0;
+  background: #101820;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+h2 { color: #72f5a0; }
+#arena {
+  position: relative;
+  height: 65vh;
+  margin: 12px;
+  background: #202e3b;
+  border: 2px solid #72f5a0;
+  overflow: hidden;
+}
+.target {
+  position: absolute;
+  left: 60%;
+  top: 35%;
+  width: 48px;
+  height: 70px;
+  border: 2px solid #ff5757;
+  box-sizing: border-box;
+  transition: left .4s, top .4s;
+}
+#aim {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: #72f5a0;
+  transform: translate(-50%, -50%);
+}
+button {
+  padding: 12px 20px;
+  margin: 6px;
+}
+</style>
+</head>
+<body>
+<h2>Aim + ESP Practice</h2>
+<p>Offline demo — sariling target lamang</p>
+<div id="arena">
+  <div id="target" class="target"></div>
+  <div id="aim">＋</div>
+</div>
+<button onclick="moveTarget()">Move Target</button>
+<button onclick="toggleAim()">Toggle Aim Assist</button>
+<p id="status">Aim Assist: OFF</p>
+<script>
+let active = false;
+function moveTarget() {
+  const t = document.getElementById('target');
+  t.style.left = (10 + Math.random()*75) + '%';
+  t.style.top = (10 + Math.random()*75) + '%';
+}
+function toggleAim() {
+  active = !active;
+  document.getElementById('status').textContent =
+    'Aim Assist: ' + (active ? 'ON (demo)' : 'OFF');
+  if (active) {
+    const t = document.getElementById('target');
+    t.style.left = '50%';
+    t.style.top = '50%';
+  }
+}
+</script>
+</body>
+</html>
